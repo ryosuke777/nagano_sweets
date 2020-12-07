@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-3"><h4><%= "#{@customer.last_name}" + "#{@customer.first_name}""さんの会員詳細" %></h4></div>
+  <div class="col-xs-7"></div>
+  <div class="col-xs-1"></div>
+</div>
+
+<div class="row">
+   <div class="col-xs-1"></div>
+     <div class="col-xs-10">
+		<table class="table table-borderless">
+		  <tr>
+		  	<th class="col-xs-2">顧客ID</th>
+		  	<td>顧客ID:  <%= @customer.id %>
+		      <% if @customer.is_deleted == true %>
+		        退会済み
+		        <% else %>
+		        有効会員
+		      <% end %>
+		    </td>
+		  </tr>
+
+		  <tr>
+		  	<th>氏名</th>
+		  	<td><%= "#{@customer.last_name}" + "#{@customer.first_name}" %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>フリガナ</th>
+		  	<td><%= "#{@customer.last_name_kana}" + "#{@customer.first_name_kana}" %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>郵便番号</th>
+		  	<td><%= @customer.postal_code %></td>
+		  </tr>
+
+		  <tr>
+		  	<th>住所</th>
+		  	<td><%= @customer.address%></td>
+		  </tr>
+
+		  <tr>
+		  	<th>電話番号</th>
+		  	<td><%= @customer.telephone_number%></td>
+		  </tr>
+
+		  <tr>
+		  	<th>メールアドレス</th>
+		  	<td><%= @customer.email %></td>
+		  </tr>
+		</table>
+
+		<div style="display:inline-flex">
+		  <%= link_to "編集する","/admin/end_users/#{@customer.id}/edit" %>
+		  <%= link_to "注文履歴一覧を見る",admin_orders_path %>
+		</div>
+     </div>
+   <div class="col-xs-1"></div>
+</div>

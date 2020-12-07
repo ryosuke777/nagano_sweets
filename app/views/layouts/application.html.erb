@@ -10,6 +10,42 @@
   </head>
 
   <body>
+   <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <nav class='nav navbar-nav navbar-left' >
+        <h3 class= "title" >Nagano Cakes</h3>
+      </nav>
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if customer_signed_in? %>
+            <li><a><%= "ようこそ、""#{current_customer.last_name}" + "#{current_customer.first_name}""さん！" %></a></li>
+            <li><%= link_to "トップページ", public_path %></li>
+            <li><%= link_to "マイページ", public_end_user_path(current_customer.id) %></li>
+            <li><a href="/public/items">商品一覧</a></li>
+            <li><a href="/public/cart_items">カート</a></li>
+            <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/customers/sign_out"> ログアウト</a></li>
+          <% elsif admin_signed_in? %>
+            <li><a>管理者ログイン中！</a><li>
+                         <li><%= link_to "トップページ", public_path %></li>
+            <li><a class="glyphicon glyphicon-link about" href="/admin/items"> 商品一覧</a></li>
+            <li><a href="/admin/end_users">会員一覧</a></li>
+            <li><a href = "/admin/orders" >注文履歴一覧</a></li>
+            <li><a href="/admin/genres">ジャンル一覧</a></li>
+            <li><a class="glyphicon glyphicon-log-out logout" rel="nofollow" data-method="delete" href="/admins/sign_out"> ログアウト</a></li>
+          <% else %>
+            <li><a>未ログイン</a></li>
+                       <li><%= link_to "トップページ", public_path %></li>
+            <li><a class="glyphicon glyphicon-link about" href="/public/about"> About</a></li>
+            <li><a class="glyphicon glyphicon-link about" href="/public/items"> 商品一覧</a></li>
+            <li><a class="glyphicon glyphicon-edit sign_up" href="/customers/sign_up"> 新規登録</a></li>
+            <li><a class="glyphicon glyphicon-log-in sign_in" href="/customers/sign_in"> ログイン(会員)</a></li>
+            <li><a class="glyphicon glyphicon-log-in sign_in" href="/admins/sign_in"> ログイン(管理者)</a></li>
+        <% end %>
+        </ul>
+      </nav>
+    </div>
+   </header>
+   <br><br><br><br>
     <%= yield %>
   </body>
 </html>

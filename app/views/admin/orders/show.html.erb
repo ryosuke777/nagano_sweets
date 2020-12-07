@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>注文履歴詳細(admin)</h4></div>
+  <div class="col-xs-9"></div>
+  <div class="col-xs-1"></div>
+</div>
+
+<br>
+<br>
+
+  <div class="row">
+     <div class="col-xs-1"></div>
+       <div class="col-xs-10">
+          <table class="table table-noborder">
+            <tr>
+              <th class="col-xs-2">購入者</th>
+              <td><%= @order.name %></td>
+            </tr>
+            <tr>
+              <th>配送先</th>
+              <td><%= @order.address %></td>
+            </tr>
+            <tr>
+              <th>支払方法</th>
+              <td><%= @order.payment_method %></td>
+            </tr>
+            <tr>
+              <th>注文ステータス</th>
+              <td>
+                <%= form_for(@order, url:admin_order_path, method: :patch) do |f| %>
+                  <%= f.select :status, Order.statuses.keys.to_a, {} %>
+                  <%= f.submit "更新" %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+       </div>
+     <div class="col-xs-1"></div>
+  </div>
+
+  <div class="row">
+     <div class="col-xs-1"></div>
+       <div class="col-xs-6">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">商品名</th>
+                <th scope="col">単価(税込)</th>
+                <th scope="col">数量</th>
+                <th scope="col">小計</th>
+                <th scope="col">制作ステータス</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @order.order_details.each do |order_detail| %>
+                <tr>
+                  <td><%= order_detail.item.name %></td>
+                  <td><%= (order_detail.item.price.to_i*1.10).floor %></td>
+                  <td><%= order_detail.amount %></td>
+                  <td><%= ((order_detail.item.price.to_i*1.10).floor)*order_detail.amount %></td>
+                  <td>
+                    <%= form_for(order_detail, url: admin_order_detail_path(order_detail), method: :patch) do |f| %>
+                      <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a %>
+                      <%= f.submit "更新" %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+       </div>
+
+       <div class="col-xs-4">
+         <br>
+         <br>
+         <p>請求情報</p>
+         <table class="table table-bordered">
+           <tr>
+             <th>商品合計</th>
+             <td><%= @sum %></td>
+           </tr>
+           <tr>
+             <th>配送料</th>
+             <td><%= @order.shipping_cost %></td>
+           </tr>
+           <tr>
+             <th>請求金額合計</th>
+             <td><%= @order.total_payment %></td>
+           </tr>
+         </table>
+       </div>
+
+
+     <div class="col-xs-1"></div>
+  </div>
+
+

@@ -1,0 +1,112 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4><%= "#{@customer.last_name}" + "#{@customer.first_name}""の会員情報編集" %></h4></div>
+</div>
+
+
+
+<%= form_for(@customer,url:admin_end_user_path) do |f| %>
+
+
+<div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-2">
+       <p>名前</p>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"(姓)" %>
+     </div>
+     <div class = "field col-xs-2">
+       <%= f.text_field :last_name, autofocus: true, autocomplete: "(姓)" %>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"(名)" %>
+     </div>
+     <div class = "field col-xs-5">
+       <%= f.text_field :first_name, autofocus: true, autocomplete: "(名)" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-2">
+       <p>フリガナ</p>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"(セイ)" %>
+     </div>
+     <div class = "field col-xs-2">
+       <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "(セイ)" %>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"(メイ)" %>
+     </div>
+     <div class = "field col-xs-5">
+       <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "(メイ)" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>郵便番号(ハイフンなし)</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.text_field :postal_code, autofocus: true, autocomplete: "郵便番号(ハイフンなし)" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>住所</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>電話番号</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.text_field :telephone_number, autofocus: true, autocomplete: "電話番号" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>メールアドレス</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1">
+     </div>
+     <div class = "field col-xs-3">
+       <p>会員ステータス</p>
+     </div>
+     <div class = "field col-xs-8">
+       <%= f.radio_button :is_deleted, false%>
+       <label class="form-check-label" for="gridRadios1">有効</label>
+       <%= f.radio_button :is_deleted, true %>
+       <label class="form-check-label" for="gridRadios2">退会済み</label>
+     </div>
+</div>
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+ <%= f.submit "変更を保存する" %>
+</div>
+<% end %>

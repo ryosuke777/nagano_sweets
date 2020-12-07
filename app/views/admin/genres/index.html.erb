@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-xs-2"></div>
+  <div class="col-xs-3"><h4>ジャンル一覧・追加</h4></div>
+  <div class="col-xs-7"></div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-xs-2"></div>
+    <div class="col-xs-8">
+      <%= form_for(@genre,url:admin_genres_path) do |f| %>
+        ジャンル<%= f.text_field :name %>
+        <%= f.radio_button :is_active,1%> 有効
+        <%= f.radio_button :is_active,0%> 無効
+        <%= f.submit "追加"%>
+      <% end %>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="col-xs-2">ジャンル</th>
+            <th scope="col" class="col-xs-1">状態</th>
+            <th scope="col" class="col-xs-2"></th>
+          </tr>
+        </thead>
+
+        <% @genres.each do |genre| %>
+        <tr>
+          <td><%= genre.name %></td>
+          <td>
+        		<% if genre.is_active == true %>
+      			有効
+      		<% else %>
+      			無効
+      		<% end %>
+          </td>
+          <td><%= link_to "編集", edit_admin_genre_path(genre.id) %></td>
+        <% end %>
+      </table>
+    </div>
+  <div class="col-xs-2"></div>
+</div>

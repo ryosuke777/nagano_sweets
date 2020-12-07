@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>配送先登録/一覧</h4></div>
+  <div class="col-xs-9"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-9">
+       <table class="table">
+         <%= form_for(@address, url: public_addresses_path) do |f| %>
+           <tr>
+              <th class="col-xs-3">郵便番号(ハイフンなし)</th>
+              <td><%= f.text_field :postal_code %></td>
+           </tr>
+           <tr>
+              <th>住所</th>
+              <td><%= f.text_field :address %></td>
+           </tr>
+           <tr>
+              <th>宛名</th>
+              <td><%= f.text_field :name %></td>
+           </tr>
+       </table>
+       <div class="col-xs-10"></div>
+       <div class="col-xs-1">
+         <%= f.submit '登録する'%>
+       </div>
+       <% end %>
+    </div>
+  <div class="col-xs-1"></div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-9">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">郵便番号</th>
+            <th scope="col">住所</th>
+            <th scope="col">宛名</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+            <tr>
+              <td><%= address.postal_code %></td>
+              <td><%= address.address%></td>
+              <td><%= address.name %></td>
+              <td>
+                <div class="col-xs-8">
+                  <div style = "display:inline-flex">
+                    <%= link_to '編集する', edit_public_address_path(address.id), class: 'fbtn' %>
+                    <%= button_to '削除する', public_address_path(address.id), method: :delete, data: {confirm: 'この宛先を削除しますか？'}, class: 'fbtn' %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <div class="col-xs-1"></div>
+</div>

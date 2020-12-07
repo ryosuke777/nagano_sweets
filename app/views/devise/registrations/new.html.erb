@@ -1,0 +1,127 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>新規会員登録</h4></div>
+  <div class="col-xs-9"></div>
+</div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-2">
+       <p>名前</p>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"(姓)" %>
+     </div>
+     <div class = "field col-xs-2">
+       <%= f.text_field :last_name, autofocus: true, autocomplete: "(姓)" %>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"(名)" %>
+     </div>
+     <div class = "field col-xs-5">
+       <%= f.text_field :first_name, autofocus: true, autocomplete: "(名)" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-2">
+       <p>フリガナ</p>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"(セイ)" %>
+     </div>
+     <div class = "field col-xs-2">
+       <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "(セイ)" %>
+     </div>
+     <div class = "field col-xs-1">
+       <%= f.label :"(メイ)" %>
+     </div>
+     <div class = "field col-xs-5">
+       <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "(メイ)" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>メールアドレス</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.email_field :email, autofocus: true, autocomplete: ">メールアドレス" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>郵便番号(ハイフンなし)</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.text_field :postal_code, autofocus: true, autocomplete: "郵便番号(ハイフンなし)" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>住所</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>電話番号</p>
+     </div>
+     <div class = "field col-xs-8">
+        <%= f.text_field :telephone_number, autofocus: true, autocomplete: "電話番号" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>パスワード(6文字以上)</p>
+     </div>
+     <div class="field col-xs-8" >
+        <%= f.password_field :password, autocomplete: "new-password" %>
+     </div>
+  </div>
+
+
+  <div class="row">
+     <div class = "field col-xs-1"></div>
+     <div class = "field col-xs-3">
+       <p>パスワード(確認用)</p>
+     </div>
+     <div class="field col-xs-8">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+     </div>
+  </div>
+
+
+   <%= f.hidden_field :is_deleted, :value => false %>
+
+
+
+  <div class="row">
+     <div class="actions col-xs-6">
+        <%= f.submit "Sign up" %>
+        <% end %>
+     </div>
+  </div>
+
+<%= render "devise/shared/links" %>

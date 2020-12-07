@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+    <div class="col-xs-3">
+		<h4>ジャンル検索</h4>
+		<% @genres.each do |genre| %>
+		  <p><%= genre.name %></p>
+		<% end %>
+	</div>
+
+    <div class="col-xs-7">
+      <%= image_tag "top_image.jpg", alt: "Rails icon", id: "assets", class: "image", width: "300px" %>
+      <h4>オススメ商品</h4>
+		<% @items.each do |item| %>
+		<div class="col-sm-3">
+		   <th>
+		     <p><%= attachment_image_tag item, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '100x100' %></p>
+		     <p><%= link_to item.name,"/public/items/#{item.id}"%></p>
+		     <p><%= item.genre.name %></td>
+		     <p>¥<%= item.price %></p>
+		   </th>
+		</div>
+		<% end %>
+        <div class="col-xs-9"></div>
+		<%= link_to "もっと見る>", public_items_path %>
+    </div>
+  <div class="col-xs-1"></div>
+</div>

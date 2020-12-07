@@ -1,0 +1,12 @@
+配送先編集ページ
+
+<%= form_for(@address, url: public_address_path(@address.id)) do |f| %>
+
+<p>配送先/一覧</p>
+郵便番号(ハイフンなし)<%= f.text_field :postal_code %><br>
+<br>
+住所<%= f.text_field :address %><br>
+<br>
+宛名<%= f.text_field :name %><br>
+<%= f.submit '編集する'%>
+<% end %>

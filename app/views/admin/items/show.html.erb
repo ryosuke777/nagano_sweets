@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>商品詳細</h4></div>
+  <div class="col-xs-9"></div>
+</div>
+<br>
+<br>
+<div class="row">
+     <div class="col-xs-1"></div>
+     <div class="col-xs-3">
+     	<%= attachment_image_tag @item, :image, :fill, 50, 50, fallback: "no_image.jpg", size: '200x150' %>
+     </div>
+
+       <div class="col-xs-7">
+          <table class="table table-borderless">
+
+            <tr>
+              <th class="col-xs-3">商品名</th>
+              <td><%= @item.name%></td>
+            </tr>
+
+            <tr>
+              <th>商品説明</th>
+              <td><%= @item.introduction%></td>
+            </tr>
+
+            <tr>
+              <th>ジャンル</th>
+              <td><%= @item.genre.name%></td>
+            </tr>
+
+            <tr>
+              <th>税込価格  (税抜価格)</th>
+              <td><%= (@item.price.to_i*1.10).floor%>(<%= @item.price.to_i %>) 円</td>
+            </tr>
+
+            <tr>
+              <th>販売ステータス</th>
+              <td>
+              	<% if @item.is_active == true %>
+		          販売中
+		        <% else %>
+		          販売停止中
+		        <% end %>
+		      </td>
+            </tr>
+          </table>
+       </div>
+
+     <div class="col-xs-1"></div>
+  </div>
+  <div class="col-xs-9"></div>
+   <%= link_to "編集する",  "/admin/items/#{@item.id}/edit"%>

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-2"><h4>ジャンル編集</h4></div>
+  <div class="col-xs-9"></div>
+  <div class="col-xs-1"></div>
+</div>
+<div class="row">
+  <div class="col-xs-1"></div>
+	<%= form_for(@genre,url:admin_genre_path(@genre.id),method: :patch) do |f| %>
+	  ジャンル<%= f.text_field :name %>
+	  <%= f.radio_button :is_active,1%> 有効
+	  <%= f.radio_button :is_active,0%> 無効
+	  <%= f.submit "変更を保存する"%>
+	<% end %>
+  <div class="col-xs-1"></div>
+</div>
