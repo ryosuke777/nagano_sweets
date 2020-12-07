@@ -27,7 +27,7 @@
           <% elsif admin_signed_in? %>
             <li><a>管理者ログイン中！</a><li>
                          <li><%= link_to "トップページ", public_path %></li>
-            <li><a class="glyphicon glyphicon-link about" href="/admin/items"> 商品一覧</a></li>
+            <li><a href="/admin/items"> 商品一覧</a></li>
             <li><a href="/admin/end_users">会員一覧</a></li>
             <li><a href = "/admin/orders" >注文履歴一覧</a></li>
             <li><a href="/admin/genres">ジャンル一覧</a></li>
@@ -35,8 +35,8 @@
           <% else %>
             <li><a>未ログイン</a></li>
                        <li><%= link_to "トップページ", public_path %></li>
-            <li><a class="glyphicon glyphicon-link about" href="/public/about"> About</a></li>
-            <li><a class="glyphicon glyphicon-link about" href="/public/items"> 商品一覧</a></li>
+            <li><a href="/public/about"> About</a></li>
+            <li><a href="/public/items"> 商品一覧</a></li>
             <li><a class="glyphicon glyphicon-edit sign_up" href="/customers/sign_up"> 新規登録</a></li>
             <li><a class="glyphicon glyphicon-log-in sign_in" href="/customers/sign_in"> ログイン(会員)</a></li>
             <li><a class="glyphicon glyphicon-log-in sign_in" href="/admins/sign_in"> ログイン(管理者)</a></li>
