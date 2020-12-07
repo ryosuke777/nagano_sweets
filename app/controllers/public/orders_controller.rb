@@ -7,6 +7,9 @@ class Public::OrdersController < ApplicationController
 
 	def confirm
       @order = Order.new
+      @order.customer_id = current_customer.id
+      @order.shipping_cost = params[:order][:shipping_cost]
+      @order.status = 0
       @cart_items = CartItem.all
 
       @sum = 0
@@ -14,9 +17,6 @@ class Public::OrdersController < ApplicationController
           @sum += (cart_item.item.price.to_i*1.10).floor * (cart_item.amount.to_i)
         end
 
-	  @order.customer_id = current_customer.id
-	  @order.shipping_cost = params[:order][:shipping_cost]
-	  @order.status = 0
 	   if  params[:order][:address_option] == "0"
 	   	 @order.address = current_customer.address
 	   	 @order.postal_code = current_customer.postal_code
@@ -27,8 +27,18 @@ class Public::OrdersController < ApplicationController
        @order.address = @address.address
        @order.name = @address.name
 	   elsif params[:order][:address_option] == "2"
-	     @order = Order.new(order_params)
+	     # @order = Order.new(order_params)
        @address = Address.new
+       @address.customer_id = current_customer.id
+       @address.address = params[:order][:address]
+       @address.postal_code = params[:order][:postal_code]
+       @address.name = params[:order][:name]
+       @address.save
+
+       @order.postal_code = @address.postal_code
+       @order.address = @address.address
+       @order.name = @address.name
+
 	   end
 
 	   if  params[:order][:payment_method_option] == "0"
@@ -56,12 +66,12 @@ class Public::OrdersController < ApplicationController
 
 
 
-       @address = Address.new
-       @address.customer_id = current_customer.id
-       @address.address = @order.address
-       @address.postal_code = @order.postal_code
-       @address.name = @order.name
-       @address.save
+       # @address = Address.new
+       # @address.customer_id = current_customer.id
+       # @address.address = @order.address
+       # @address.postal_code = @order.postal_code
+       # @address.name = @order.name
+       # @address.save
 
             cart_item.destroy
           end
