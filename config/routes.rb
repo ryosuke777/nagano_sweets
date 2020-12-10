@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   sessions: 'admins/sessions'
   }
   devise_for :customers
-  root 'homes#top'
+  root 'devise/sessions#new'
 
   namespace :admin do
     get 'homes/top'
