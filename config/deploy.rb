@@ -39,7 +39,7 @@ set :repo_url, "git@example.com:me/my_repo.git"
 # set :ssh_options, verify_host_key: :secure
 set :application, "nagano_sweets"
 set :repo_url, "git@github.com:ryosuke777/nagano_sweets.git"
-set :branch, 'master'
+set :branch, 'nagano_1'
 set :deploy_to, "/home/ec2-user/nagano_sweets"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
