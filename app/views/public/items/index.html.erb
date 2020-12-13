@@ -14,7 +14,7 @@
 		<% @items.each do |item| %>
 		<div class="col-sm-3">
 		   <th>
-		     <p><%= attachment_image_tag item, :image, :fill, 50, 50, fallback: image-url（"no_image.jpg"), size: '100x100' %></p>
+		     <p><%= attachment_image_tag item, :image, :fill, 50, 50, fallback: image-url("no_image.jpg"), size: '100x100' %></p>
 		     <p><%= link_to item.name,"/public/items/#{item.id}"%></p>
 		     <p><%= item.genre.name %></td>
 		     <p>¥<%= item.price %></p>
