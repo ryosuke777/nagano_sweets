@@ -77,4 +77,6 @@ gem 'pry-byebug'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
 end
